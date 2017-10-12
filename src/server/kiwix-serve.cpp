@@ -365,7 +365,7 @@ static struct MHD_Response* handle_suggest(
   mimeType = "application/json; charset=utf-8";
   bool deflated = acceptEncodingDeflate && compress_content(content, mimeType);
   return build_response(
-      content.data(), content.size(), "", mimeType, deflated, true);
+      content.data(), content.size(), "", mimeType, deflated, false);
 }
 
 static struct MHD_Response* handle_skin(struct MHD_Connection* connection,
@@ -457,7 +457,7 @@ static struct MHD_Response* handle_search(
                         httpRedirection,
                         mimeType,
                         deflated,
-                        true);
+                        false);
 }
 
 static struct MHD_Response* handle_random(
@@ -608,7 +608,7 @@ static struct MHD_Response* handle_default(
 
   bool deflated = acceptEncodingDeflate && compress_content(content, mimeType);
   return build_response(
-      content.data(), content.size(), "", mimeType, deflated, true);
+      content.data(), content.size(), "", mimeType, deflated, false);
 }
 
 static int accessHandlerCallback(void* cls,
